@@ -1,4 +1,4 @@
-import { Kbd, KbdGroup } from '@foretag/cosmos';
+import { Kbd, KbdGroup } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta = {

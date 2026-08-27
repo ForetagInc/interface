@@ -5,7 +5,7 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
 	test: {
 		projects: [
-			'packages/cosmos/vitest.config.ts',
+			'packages/interface/vitest.config.ts',
 			'storybook/vitest.config.ts',
 		],
 	},

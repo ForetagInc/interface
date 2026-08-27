@@ -1,6 +1,6 @@
 import { Select as SelectPrimitive } from '@base-ui-components/react/select';
-import { tv } from 'tailwind-variants';
 import * as React from 'react';
+import { tv } from 'tailwind-variants';
 import { cn } from '../utils';
 
 type SelectSize = 'base' | 'small';
@@ -229,13 +229,13 @@ function SelectSeparator({ className, ...props }: React.ComponentProps<'hr'>) {
 
 export {
 	Select,
-	SelectGroup,
-	SelectValue,
-	SelectTrigger,
 	SelectContent,
-	SelectLabel,
+	SelectGroup,
 	SelectItem,
-	SelectSeparator,
-	SelectScrollUpButton,
+	SelectLabel,
 	SelectScrollDownButton,
+	SelectScrollUpButton,
+	SelectSeparator,
+	SelectTrigger,
+	SelectValue,
 };

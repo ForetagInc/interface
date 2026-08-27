@@ -7,7 +7,7 @@ import {
 	SelectSeparator,
 	SelectTrigger,
 	SelectValue,
-} from '@foretag/cosmos';
+} from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 // `size` lives on the Select root and reaches the trigger and items via context.

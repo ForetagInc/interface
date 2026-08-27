@@ -1,7 +1,7 @@
-import { Button, Input, Textarea } from './';
-import { tv, type VariantProps } from 'tailwind-variants';
 import type * as React from 'react';
+import { tv, type VariantProps } from 'tailwind-variants';
 import { cn } from '../utils';
+import { Button, Input, Textarea } from '.';
 
 function InputGroup({ className, ...props }: React.ComponentProps<'div'>) {
 	return (

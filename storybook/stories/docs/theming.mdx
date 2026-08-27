@@ -4,7 +4,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Theming
 
-Cosmos ships four themes. Each declares which colour modes it supports — not
+Interface ships four themes. Each declares which colour modes it supports — not
 every theme has both, and asking for an unsupported mode falls back rather than
 rendering something broken.
 
@@ -25,7 +25,7 @@ the same `APP_THEME_DEFINITIONS` the runtime uses.
 document root — and returns the mode it actually resolved to:
 
 ```ts
-import { applyTheme } from '@foretag/cosmos';
+import { applyTheme } from '@foretag/interface';
 
 applyTheme(document.documentElement, 'marble', 'dark');
 ```
@@ -62,20 +62,20 @@ Use `resolveThemeAppearance` if you need that answer without touching the DOM.
 when it changes. It is how `Toaster` matches the surrounding theme:
 
 ```tsx
-import { useResolvedThemeMode } from '@foretag/cosmos';
+import { useResolvedThemeMode } from '@foretag/interface';
 
 const mode = useResolvedThemeMode(); // 'light' | 'dark'
 ```
 
 ## Persisting a choice
 
-Cosmos deliberately does not read or write cookies, local storage or URLs — the
+Interface deliberately does not read or write cookies, local storage or URLs — the
 app owns persistence. Read your stored values, pass them through
 `normalizeTheme` and `normalizeThemeMode` to reject anything stale or invalid,
 then call `applyTheme`.
 
 ```ts
-import { applyTheme, normalizeTheme, normalizeThemeMode } from '@foretag/cosmos';
+import { applyTheme, normalizeTheme, normalizeThemeMode } from '@foretag/interface';
 
 applyTheme(
   document.documentElement,

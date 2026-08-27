@@ -1,4 +1,4 @@
-import { Input } from '@foretag/cosmos';
+import { Input } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

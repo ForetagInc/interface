@@ -1,8 +1,8 @@
 /** biome-ignore-all lint/suspicious/noDocumentCookie: Placeholders */
 
-import { tv, type VariantProps } from 'tailwind-variants';
 import { useRender } from '@base-ui-components/react/use-render';
 import * as React from 'react';
+import { tv, type VariantProps } from 'tailwind-variants';
 import { useIsMobile } from '../../hooks/use-mobile';
 import { cn } from '../utils';
 import {
@@ -18,7 +18,7 @@ import {
 	TooltipContent,
 	TooltipProvider,
 	TooltipTrigger,
-} from './';
+} from '.';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;

@@ -1,9 +1,9 @@
 import { format, isBefore, isValid, parse, startOfDay } from 'date-fns';
 import * as React from 'react';
+import { cn } from '../utils';
 import { Calendar } from './calendar';
 import { Input } from './input';
 import { Popover, PopoverContent, PopoverTrigger } from './popover';
-import { cn } from '../utils';
 
 type Props = {
 	date?: Date;
@@ -113,10 +113,10 @@ export function DatePicker({
 			<div
 				ref={anchorRef}
 				className={cn(
-					'relative flex h-9 w-full items-center gap-1.5 rounded-md bg-[var(--input-bg)] px-2.5 text-[var(--input-fg)] shadow-[var(--input-shadow)] transition-[color,background-color,border-color,box-shadow] focus-within:shadow-[var(--input-shadow-focus)] hover:bg-[var(--input-bg-hover)]',
-					hasError && 'shadow-[var(--input-shadow-error)]',
+					'relative flex h-9 w-full items-center gap-1.5 rounded-md bg-(--input-bg) px-2.5 text-(--input-fg) shadow-(--input-shadow) transition-[color,background-color,border-color,box-shadow] focus-within:shadow-(--input-shadow-focus) hover:bg-(--input-bg-hover)',
+					hasError && 'shadow-(--input-shadow-error)',
 					disabled &&
-						'cursor-not-allowed bg-[var(--input-disabled-bg)] text-[var(--input-disabled-fg)]',
+						'cursor-not-allowed bg-(--input-disabled-bg) text-(--input-disabled-fg)',
 					className,
 				)}
 				title={placeholder}
@@ -150,7 +150,7 @@ export function DatePicker({
 							}
 						}}
 					/>
-					<span className="text-[var(--input-placeholder)]">/</span>
+					<span className="text-(--input-placeholder)">/</span>
 					<Input
 						ref={monthRef}
 						value={monthPart}
@@ -187,7 +187,7 @@ export function DatePicker({
 							}
 						}}
 					/>
-					<span className="text-[var(--input-placeholder)]">/</span>
+					<span className="text-(--input-placeholder)">/</span>
 					<Input
 						ref={yearRef}
 						value={yearPart}

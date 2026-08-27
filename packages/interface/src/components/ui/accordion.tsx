@@ -26,7 +26,6 @@ function AccordionTrigger({
 		<AccordionPrimitive.Header className="flex">
 			<AccordionPrimitive.Trigger
 				className={cn(
-					// The house hover is a colour shift, not an underline.
 					'flex flex-1 items-center justify-between gap-4 py-4 text-left font-medium text-ui-fg-base outline-none ring-sidebar-ring transition-colors hover:text-foreground focus-visible:ring-2 data-panel-open:[&>i]:rotate-180',
 					className,
 				)}
@@ -56,4 +55,4 @@ function AccordionContent({
 	);
 }
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };

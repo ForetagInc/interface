@@ -1,5 +1,5 @@
 {
-	"name": "@foretag/cosmos",
+	"name": "@foretag/interface",
 	"private": false,
 	"version": "1.0.0-alpha.1",
 	"description": "Foretag's design system: accessible React primitives built on Base UI and Tailwind CSS.",
@@ -8,7 +8,7 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/ForetagInc/cosmos.git",
-		"directory": "packages/cosmos"
+		"directory": "packages/interface"
 	},
 	"publishConfig": {
 		"access": "public"

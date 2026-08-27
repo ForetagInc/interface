@@ -10,7 +10,7 @@ import {
 	FieldSet,
 	FieldTitle,
 	Input,
-} from '@foretag/cosmos';
+} from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

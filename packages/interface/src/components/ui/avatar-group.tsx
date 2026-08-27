@@ -1,6 +1,6 @@
-import { Avatar, AvatarFallback } from './avatar';
-import { cn } from '../utils';
 import * as React from 'react';
+import { cn } from '../utils';
+import { Avatar, AvatarFallback } from './avatar';
 
 type AvatarProps = React.ComponentProps<typeof Avatar>;
 type AvatarSize = NonNullable<AvatarProps['size']>;

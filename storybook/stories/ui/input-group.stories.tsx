@@ -5,7 +5,7 @@ import {
 	InputGroupInput,
 	InputGroupText,
 	InputGroupTextarea,
-} from '@foretag/cosmos';
+} from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

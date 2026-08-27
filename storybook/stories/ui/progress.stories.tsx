@@ -1,4 +1,4 @@
-import { Progress } from '@foretag/cosmos';
+import { Progress } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

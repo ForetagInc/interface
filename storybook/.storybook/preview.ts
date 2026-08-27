@@ -5,7 +5,7 @@ import {
 	applyTheme,
 	normalizeTheme,
 	normalizeThemeMode,
-} from '@foretag/cosmos';
+} from '@foretag/interface';
 import type { Preview } from '@storybook/react-vite';
 import { addons } from 'storybook/preview-api';
 import './preview.css';
@@ -65,7 +65,7 @@ const preview: Preview = {
 	},
 	globalTypes: {
 		theme: {
-			description: 'Cosmos theme',
+			description: 'Interface theme',
 			toolbar: {
 				icon: 'paintbrush',
 				title: 'Theme',

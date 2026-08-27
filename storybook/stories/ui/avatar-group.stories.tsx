@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarGroup } from '@foretag/cosmos';
+import { Avatar, AvatarFallback, AvatarGroup } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const members = ['AL', 'CB', 'DE', 'FG', 'HI'];

@@ -1,4 +1,4 @@
-import { Textarea } from '@foretag/cosmos';
+import { Textarea } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

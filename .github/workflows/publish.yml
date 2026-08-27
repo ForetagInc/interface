@@ -34,24 +34,24 @@ jobs:
       # A tag that disagrees with the manifest would publish the wrong version.
       - name: Verify tag matches package version
         run: |
-          version=$(bun --print "require('./packages/cosmos/package.json').version")
+          version=$(bun --print "require('./packages/interface/package.json').version")
           tagged="${GITHUB_REF_NAME#v}"
           if [ "$version" != "$tagged" ]; then
             echo "Tag $GITHUB_REF_NAME expects version $tagged, but package.json says $version" >&2
             exit 1
           fi
-          echo "Publishing @foretag/cosmos@$version"
+          echo "Publishing @foretag/interface@$version"
 
       # Lint, typecheck and tests are not repeated here: the CI workflow runs on
       # this same push, against the same commit.
       - name: Build package
-        run: bun run build:cosmos
+        run: bun run build:interface
 
       # A prerelease must not land on the `latest` dist-tag, or `bun add
-      # @foretag/cosmos` would install it for everyone.
+      # @foretag/interface` would install it for everyone.
       - name: Resolve dist-tag
         run: |
-          version=$(bun --print "require('./packages/cosmos/package.json').version")
+          version=$(bun --print "require('./packages/interface/package.json').version")
           if [[ "$version" == *-* ]]; then
             tag="${version#*-}"
             tag="${tag%%.*}"
@@ -78,10 +78,10 @@ jobs:
 
       - name: Show tarball contents
         run: npm pack --dry-run
-        working-directory: packages/cosmos
+        working-directory: packages/interface
 
       # No NODE_AUTH_TOKEN: npm authenticates via the OIDC token above, against
-      # the trusted publisher configured for @foretag/cosmos on npmjs.com.
+      # the trusted publisher configured for @foretag/interface on npmjs.com.
       - name: Publish
         run: npm publish --provenance --tag "$DIST_TAG"
-        working-directory: packages/cosmos
+        working-directory: packages/interface

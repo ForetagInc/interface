@@ -1,4 +1,4 @@
-import { CurrencyInput, Label } from '@foretag/cosmos';
+import { CurrencyInput, Label } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

@@ -1,4 +1,4 @@
-import { Checkbox, Field, FieldLabel } from '@foretag/cosmos';
+import { Checkbox, Field, FieldLabel } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 

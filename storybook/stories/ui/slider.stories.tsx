@@ -1,4 +1,4 @@
-import { Field, FieldLabel, Slider } from '@foretag/cosmos';
+import { Field, FieldLabel, Slider } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 

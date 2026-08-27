@@ -1,4 +1,4 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@foretag/cosmos';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta = {

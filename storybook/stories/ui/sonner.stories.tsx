@@ -1,4 +1,4 @@
-import { Button, toast, Toaster } from '@foretag/cosmos';
+import { Button, toast, Toaster } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta = {

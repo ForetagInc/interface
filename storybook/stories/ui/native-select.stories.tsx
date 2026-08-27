@@ -1,4 +1,4 @@
-import { Label, NativeSelect } from '@foretag/cosmos';
+import { Label, NativeSelect } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

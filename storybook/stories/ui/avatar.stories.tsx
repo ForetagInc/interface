@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@foretag/cosmos';
+import { Avatar, AvatarFallback, AvatarImage } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

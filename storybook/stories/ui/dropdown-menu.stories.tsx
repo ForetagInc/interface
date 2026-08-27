@@ -9,7 +9,7 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuShortcut,
 	DropdownMenuTrigger,
-} from '@foretag/cosmos';
+} from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 

@@ -1,4 +1,4 @@
-import { Badge } from '@foretag/cosmos';
+import { Badge } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

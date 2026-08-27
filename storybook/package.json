@@ -10,7 +10,7 @@
 		"build-storybook:cf": "STORYBOOK_BASE_PATH=/ bun run build-storybook"
 	},
 	"dependencies": {
-		"@foretag/cosmos": "workspace:*"
+		"@foretag/interface": "workspace:*"
 	},
 	"devDependencies": {
 		"@storybook/addon-a11y": "^10.5.8",

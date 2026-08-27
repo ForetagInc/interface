@@ -16,7 +16,7 @@ function DialogOverlay({
 	return (
 		<DialogPrimitive.Backdrop
 			className={cn(
-				'fixed inset-0 z-50 bg-[var(--dialog-overlay-bg)] backdrop-blur-[1px] transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0',
+				'fixed inset-0 z-50 bg-(--dialog-overlay-bg) backdrop-blur-[1px] transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0',
 				className,
 			)}
 			{...props}
@@ -117,13 +117,13 @@ function DialogDescription({
 
 export {
 	Dialog,
-	DialogPortal,
-	DialogOverlay,
 	DialogClose,
-	DialogTrigger,
 	DialogContent,
-	DialogHeader,
-	DialogFooter,
-	DialogTitle,
 	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogOverlay,
+	DialogPortal,
+	DialogTitle,
+	DialogTrigger,
 };

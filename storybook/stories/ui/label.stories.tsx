@@ -1,4 +1,4 @@
-import { Label } from '@foretag/cosmos';
+import { Label } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

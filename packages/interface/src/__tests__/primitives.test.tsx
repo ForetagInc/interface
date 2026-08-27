@@ -21,7 +21,7 @@ import {
 	TabsTrigger,
 } from '../index';
 
-describe('Cosmos UI primitives', () => {
+describe('Interface UI primitives', () => {
 	test('renders button', () => {
 		render(<Button>Launch</Button>);
 		expect(screen.getByRole('button', { name: 'Launch' })).toBeInTheDocument();

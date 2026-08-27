@@ -1,4 +1,4 @@
-import { Calendar } from '@foretag/cosmos';
+import { Calendar } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 

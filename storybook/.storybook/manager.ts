@@ -1,5 +1,5 @@
 import { addons } from 'storybook/manager-api';
-import theme from './cosmos';
+import theme from './interface';
 
 addons.setConfig({
 	theme,

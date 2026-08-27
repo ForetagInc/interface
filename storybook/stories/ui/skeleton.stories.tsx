@@ -1,4 +1,4 @@
-import { Skeleton } from '@foretag/cosmos';
+import { Skeleton } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

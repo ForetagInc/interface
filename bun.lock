@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "cosmos",
+      "name": "interface",
       "devDependencies": {
         "@biomejs/biome": "^2.5.8",
         "@happy-dom/global-registrator": "^20.11.2",
@@ -16,8 +16,8 @@
         "vitest": "^3.2.7",
       },
     },
-    "packages/cosmos": {
-      "name": "@foretag/cosmos",
+    "packages/interface": {
+      "name": "@foretag/interface",
       "version": "1.0.0-alpha.1",
       "dependencies": {
         "@base-ui-components/react": "^1.0.0-rc.0",
@@ -49,7 +49,7 @@
       "name": "@foretag/storybook",
       "version": "0.1.0",
       "dependencies": {
-        "@foretag/cosmos": "workspace:*",
+        "@foretag/interface": "workspace:*",
       },
       "devDependencies": {
         "@storybook/addon-a11y": "^10.5.8",
@@ -237,7 +237,7 @@
 
     "@floating-ui/utils": ["@floating-ui/utils@0.2.11", "", {}, "sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg=="],
 
-    "@foretag/cosmos": ["@foretag/cosmos@workspace:packages/cosmos"],
+    "@foretag/interface": ["@foretag/interface@workspace:packages/interface"],
 
     "@foretag/storybook": ["@foretag/storybook@workspace:storybook"],
 

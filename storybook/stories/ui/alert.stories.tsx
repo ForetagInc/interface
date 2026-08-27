@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertTitle } from '@foretag/cosmos';
+import { Alert, AlertDescription, AlertTitle } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

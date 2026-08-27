@@ -8,7 +8,7 @@ import {
 	FormLabel,
 	FormMessage,
 	Input,
-} from '@foretag/cosmos';
+} from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';

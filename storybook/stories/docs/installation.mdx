@@ -4,10 +4,10 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Installation
 
-Cosmos is published to npm as **`@foretag/cosmos`**. Install it with Bun:
+Interface is published to npm as **`@foretag/interface`**. Install it with Bun:
 
 ```bash
-bun add @foretag/cosmos
+bun add @foretag/interface
 ```
 
 React 19 is a peer dependency, so install it alongside if the app doesn't
@@ -24,13 +24,13 @@ in the package stylesheet. Import it once, at your app's entry point — without
 it components render unstyled.
 
 ```ts
-import '@foretag/cosmos/styles.css';
+import '@foretag/interface/styles.css';
 ```
 
 ## Render a component
 
 ```tsx
-import { Button, Input, Label } from '@foretag/cosmos';
+import { Button, Input, Label } from '@foretag/interface';
 
 export function Example() {
   return (
@@ -47,20 +47,20 @@ export function Example() {
 
 | Import | Contents |
 | --- | --- |
-| `@foretag/cosmos` | All primitives, hooks and theme helpers |
-| `@foretag/cosmos/styles.css` | Tokens, themes, fonts and Tailwind layers |
-| `@foretag/cosmos/themes` | Theme helpers on their own, without pulling in React components |
+| `@foretag/interface` | All primitives, hooks and theme helpers |
+| `@foretag/interface/styles.css` | Tokens, themes, fonts and Tailwind layers |
+| `@foretag/interface/themes` | Theme helpers on their own, without pulling in React components |
 
 The package ships compiled ESM with type declarations, so there is nothing to
 transpile — it works in any bundler without `transpilePackages` or similar.
 
 ## Tailwind consumers
 
-Cosmos writes its styles as Tailwind classes, so Tailwind needs to scan the
+Interface writes its styles as Tailwind classes, so Tailwind needs to scan the
 package to generate them. The package stylesheet already declares its own
 `@source`, which means importing `styles.css` is enough in most setups. If you
 compile Tailwind separately, point an `@source` at the installed package:
 
 ```css
-@source '../node_modules/@foretag/cosmos/dist';
+@source '../node_modules/@foretag/interface/dist';
 ```

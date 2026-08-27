@@ -1,5 +1,5 @@
 // Loaded after bun-test-dom.ts, so `window` exists by the time these run.
-// Mirrors packages/cosmos/vitest.setup.ts for Bun's runner.
+// Mirrors packages/interface/vitest.setup.ts for Bun's runner.
 import '@testing-library/jest-dom/vitest';
 
 if (!window.matchMedia) {

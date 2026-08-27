@@ -1,4 +1,4 @@
-import { Separator } from '@foretag/cosmos';
+import { Separator } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

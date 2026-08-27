@@ -1,7 +1,7 @@
 import { Command as CommandPrimitive } from 'cmdk';
 import * as React from 'react';
-import { Dialog, DialogContent } from './';
 import { cn } from '../utils';
+import { Dialog, DialogContent } from '.';
 
 // Matches the flyout surface used by the menu and popover primitives, so a
 // standalone palette reads as a surface instead of bare text on the page.
@@ -22,7 +22,6 @@ const Command = React.forwardRef<
 
 Command.displayName = CommandPrimitive.displayName;
 
-// Base UI's Dialog children may be a render function; Command only accepts nodes.
 type CommandDialogProps = Omit<
 	React.ComponentProps<typeof Dialog>,
 	'children'
@@ -159,11 +158,11 @@ CommandShortcut.displayName = 'CommandShortcut';
 export {
 	Command,
 	CommandDialog,
-	CommandInput,
-	CommandList,
 	CommandEmpty,
 	CommandGroup,
+	CommandInput,
 	CommandItem,
-	CommandShortcut,
+	CommandList,
 	CommandSeparator,
+	CommandShortcut,
 };
