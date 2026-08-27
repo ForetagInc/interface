@@ -110,8 +110,14 @@ function FieldContent({ className, ...props }: React.ComponentProps<'div'>) {
 const fieldLabelClass = cn(
 	labelVariants(),
 	'group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50',
-	'has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border *:data-[slot=field]:p-4',
-	'has-data-[state=checked]:border-primary has-data-[state=checked]:bg-primary/5 dark:has-data-[state=checked]:bg-primary/10',
+	'has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border has-[>[data-slot=field]]:border-ui-border-base has-[>[data-slot=field]]:bg-card has-[>[data-slot=field]]:transition-colors *:data-[slot=field]:p-4',
+	'has-[>[data-slot=field]]:not-has-data-checked:hover:bg-accent/40',
+	// Base UI marks selection with `data-checked`, so the old
+	// `data-[state=checked]` selector never matched and the card had no
+	// selected state at all. `primary` is also near-black in most themes --
+	// `ring` is the palette's interactive accent. Both conditions are named so
+	// this outranks the resting card colours instead of tying with them.
+	'has-[>[data-slot=field]]:has-data-checked:border-ring has-[>[data-slot=field]]:has-data-checked:bg-ring/5 dark:has-[>[data-slot=field]]:has-data-checked:bg-ring/10',
 );
 
 function FieldLabel({

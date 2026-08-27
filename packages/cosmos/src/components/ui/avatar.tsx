@@ -14,13 +14,16 @@ const avatarVariants = tv({
 				'rounded-md [--avatar-inner-radius:calc(var(--radius-md)-var(--avatar-padding))]',
 			circle: 'rounded-full [--avatar-inner-radius:9999px]',
 		},
+		// The named size is the outer box. The border and `--avatar-padding`
+		// eat 3px per edge, so the picture inside is 6px smaller than the step
+		// below suggests -- the ladder is set from the intended visual size.
 		size: {
-			'2xsmall': 'size-4 text-[10px]',
-			xsmall: 'size-5 text-[11px]',
-			small: 'size-6 text-xs',
-			base: 'size-7 text-xs',
-			large: 'size-8 text-sm',
-			xlarge: 'size-10 text-sm',
+			'2xsmall': 'size-5 text-[10px]',
+			xsmall: 'size-6 text-[11px]',
+			small: 'size-7 text-xs',
+			base: 'size-8 text-xs',
+			large: 'size-10 text-sm',
+			xlarge: 'size-12 text-base',
 		},
 	},
 	defaultVariants: {

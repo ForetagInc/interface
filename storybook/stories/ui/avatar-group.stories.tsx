@@ -14,9 +14,13 @@ const meta = {
 	component: AvatarGroup,
 	argTypes: {
 		max: { control: { type: 'number', min: 1, max: members.length } },
-		sizeClassName: { control: 'text' },
+		size: {
+			control: 'select',
+			options: ['2xsmall', 'xsmall', 'small', 'base', 'large', 'xlarge'],
+		},
+		variant: { control: 'inline-radio', options: ['square', 'circle'] },
 	},
-	args: { max: members.length, sizeClassName: 'size-8', children: avatars },
+	args: { max: members.length, size: 'base', children: avatars },
 } satisfies Meta<typeof AvatarGroup>;
 
 export default meta;

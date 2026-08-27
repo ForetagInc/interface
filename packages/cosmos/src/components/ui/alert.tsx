@@ -4,12 +4,15 @@ import * as React from 'react';
 import { cn } from '../utils';
 
 const alertVariants = tv({
-	base: 'relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
+	base: 'relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4',
 	variants: {
 		variant: {
-			default: 'bg-background text-foreground',
+			// `bg-background` matched the page it sat on, so the alert read as
+			// loose text. The card surface gives it an edge of its own.
+			default:
+				'border-ui-border-base bg-card text-card-foreground [&>svg]:text-ui-fg-subtle',
 			destructive:
-				'border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive',
+				'border-destructive/30 bg-destructive/5 text-destructive [&>svg]:text-destructive',
 		},
 	},
 	defaultVariants: {

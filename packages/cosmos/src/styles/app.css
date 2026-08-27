@@ -20,6 +20,17 @@
 @custom-variant hdr (&:where[@media (dynamic-range: high)]);
 
 @layer base {
+	/* Tailwind v4 defaults an uncoloured `border` to currentColor, which paints
+	   near-black text colour onto every rule that does not name a colour. Point
+	   it back at the theme border so bare `border` utilities stay on palette. */
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-border);
+	}
+
 	body {
 		@apply bg-background text-foreground antialiased;
 	}

@@ -1,5 +1,6 @@
 import {
 	Choicebox,
+	ChoiceboxIndicator,
 	ChoiceboxItem,
 	ChoiceboxItemDescription,
 	ChoiceboxItemHeader,
@@ -36,6 +37,9 @@ export const PlanPicker: Story = {
 		<Choicebox defaultValue="team" style={{ width: 460 }}>
 			{plans.map((plan) => (
 				<ChoiceboxItem key={plan.value} value={plan.value}>
+					{/* Without the indicator there is no checked element inside the
+					    card, so the selected state never shows. */}
+					<ChoiceboxIndicator />
 					<ChoiceboxItemHeader>
 						<ChoiceboxItemTitle>{plan.title}</ChoiceboxItemTitle>
 						<ChoiceboxItemSubtitle>{plan.subtitle}</ChoiceboxItemSubtitle>

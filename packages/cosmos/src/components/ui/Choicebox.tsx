@@ -3,6 +3,7 @@ import {
 	createContext,
 	type HTMLAttributes,
 	useContext,
+	useId,
 } from 'react';
 import {
 	Field,
@@ -24,6 +25,8 @@ export const Choicebox = ({ className, ...props }: ChoiceboxProps) => (
 type ChoiceboxItemContextValue = {
 	value: ChoiceboxItemProps['value'];
 	id?: ChoiceboxItemProps['id'];
+	/** Names the radio: a plain <label> cannot name a role="radio" span. */
+	titleId: string;
 };
 
 const ChoiceboxItemContext = createContext<ChoiceboxItemContextValue | null>(
@@ -57,17 +60,21 @@ export const ChoiceboxItem = ({
 	value,
 	id,
 	labelClassName,
-}: ChoiceboxItemProps) => (
-	<ChoiceboxItemContext.Provider value={{ value, id }}>
-		{/* A plain label: Base UI's Field.Label must live inside Field.Root, but the
-		    Choicebox card wraps it. */}
-		<Label htmlFor={id} className={cn(fieldLabelClass, labelClassName)}>
-			<Field className={className} orientation="horizontal">
-				{children}
-			</Field>
-		</Label>
-	</ChoiceboxItemContext.Provider>
-);
+}: ChoiceboxItemProps) => {
+	const titleId = useId();
+
+	return (
+		<ChoiceboxItemContext.Provider value={{ value, id, titleId }}>
+			{/* A plain label: Base UI's Field.Label must live inside Field.Root, but the
+			    Choicebox card wraps it. */}
+			<Label htmlFor={id} className={cn(fieldLabelClass, labelClassName)}>
+				<Field className={className} orientation="horizontal">
+					{children}
+				</Field>
+			</Label>
+		</ChoiceboxItemContext.Provider>
+	);
+};
 
 export type ChoiceboxItemHeaderProps = ComponentProps<typeof FieldContent>;
 
@@ -82,8 +89,15 @@ export type ChoiceboxItemTitleProps = ComponentProps<typeof FieldTitle>;
 
 export const ChoiceboxItemTitle = ({
 	className,
+	id,
 	...props
-}: ChoiceboxItemTitleProps) => <FieldTitle className={className} {...props} />;
+}: ChoiceboxItemTitleProps) => {
+	const context = useContext(ChoiceboxItemContext);
+
+	return (
+		<FieldTitle id={id ?? context?.titleId} className={className} {...props} />
+	);
+};
 
 export type ChoiceboxItemSubtitleProps = HTMLAttributes<HTMLSpanElement>;
 
@@ -117,6 +131,7 @@ export const ChoiceboxIndicator = (props: ChoiceboxIndicatorProps) => {
 
 	return (
 		<RadioGroupItem
+			aria-labelledby={context.titleId}
 			{...props}
 			value={context.value}
 			className={cn('mt-0.5 self-start', props.className)}

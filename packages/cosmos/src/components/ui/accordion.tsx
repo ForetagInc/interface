@@ -10,7 +10,10 @@ function AccordionItem({
 	...props
 }: React.ComponentProps<typeof AccordionPrimitive.Item>) {
 	return (
-		<AccordionPrimitive.Item className={cn('border-b', className)} {...props} />
+		<AccordionPrimitive.Item
+			className={cn('border-ui-border-base border-b', className)}
+			{...props}
+		/>
 	);
 }
 
@@ -23,13 +26,14 @@ function AccordionTrigger({
 		<AccordionPrimitive.Header className="flex">
 			<AccordionPrimitive.Trigger
 				className={cn(
-					'flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline data-panel-open:[&>i]:rotate-180',
+					// The house hover is a colour shift, not an underline.
+					'flex flex-1 items-center justify-between gap-4 py-4 text-left font-medium text-ui-fg-base outline-none ring-sidebar-ring transition-colors hover:text-foreground focus-visible:ring-2 data-panel-open:[&>i]:rotate-180',
 					className,
 				)}
 				{...props}
 			>
 				{children}
-				<i className="ti ti-chevron-down shrink-0 text-lg transition-transform duration-200" />
+				<i className="ti ti-chevron-down shrink-0 text-lg text-ui-fg-subtle transition-transform duration-200" />
 			</AccordionPrimitive.Trigger>
 		</AccordionPrimitive.Header>
 	);
@@ -45,7 +49,9 @@ function AccordionContent({
 			className="h-(--accordion-panel-height) overflow-hidden text-sm transition-[height] duration-200 ease-out data-ending-style:h-0 data-starting-style:h-0"
 			{...props}
 		>
-			<div className={cn('pt-0 pb-4', className)}>{children}</div>
+			<div className={cn('pt-0 pb-4 text-ui-fg-base', className)}>
+				{children}
+			</div>
 		</AccordionPrimitive.Panel>
 	);
 }

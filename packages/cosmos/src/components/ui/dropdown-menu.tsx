@@ -13,7 +13,7 @@ const itemClass =
 	'relative flex h-8 cursor-pointer select-none items-center gap-2 rounded-md px-2 text-sm outline-none transition-colors data-disabled:pointer-events-none data-disabled:text-ui-fg-subtle data-disabled:opacity-50 data-highlighted:bg-accent data-highlighted:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-ui-fg-subtle data-highlighted:[&_svg]:text-accent-foreground';
 
 const popupClass =
-	'min-w-32 origin-(--transform-origin) overflow-y-auto overflow-x-hidden rounded-md border border-ui-border-base bg-ui-bg-component p-0.5 text-ui-fg-base shadow-elevation-flyout transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0';
+	'min-w-32 origin-(--transform-origin) overflow-y-auto overflow-x-hidden rounded-md bg-ui-bg-component p-0.5 text-ui-fg-base shadow-elevation-flyout transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0';
 
 function DropdownMenuSubTrigger({
 	className,

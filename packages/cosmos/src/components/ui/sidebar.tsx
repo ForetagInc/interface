@@ -181,7 +181,7 @@ const Sidebar = React.forwardRef<
 			return (
 				<div
 					className={cn(
-						'flex h-full w-[--sidebar-width] flex-col bg-sidebar text-sidebar-foreground',
+						'flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground',
 						className,
 					)}
 					ref={ref}
@@ -198,7 +198,7 @@ const Sidebar = React.forwardRef<
 					<SheetContent
 						data-sidebar="sidebar"
 						data-mobile="true"
-						className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+						className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
 						style={
 							{
 								'--sidebar-width': SIDEBAR_WIDTH_MOBILE,
@@ -228,24 +228,24 @@ const Sidebar = React.forwardRef<
 				{/* This is what handles the sidebar gap on desktop */}
 				<div
 					className={cn(
-						'relative w-[--sidebar-width] bg-transparent transition-[width] duration-200 ease-linear',
+						'relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear',
 						'group-data-[collapsible=offcanvas]:w-0',
 						'group-data-[side=right]:rotate-180',
 						variant === 'floating' || variant === 'inset'
 							? 'group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]'
-							: 'group-data-[collapsible=icon]:w-[--sidebar-width-icon]',
+							: 'group-data-[collapsible=icon]:w-(--sidebar-width-icon)',
 					)}
 				/>
 				<div
 					className={cn(
-						'sticky inset-y-0 z-10 hidden h-svh w-[--sidebar-width] border-[var(--sidebar-stroke)] transition-[left,right,width] duration-200 ease-linear md:flex',
+						'sticky inset-y-0 z-10 hidden h-svh w-(--sidebar-width) border-[var(--sidebar-stroke)] transition-[left,right,width] duration-200 ease-linear md:flex',
 						side === 'left'
 							? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
 							: 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
 						// Adjust the padding for floating and inset variants.
 						variant === 'floating' || variant === 'inset'
 							? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]'
-							: 'group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l',
+							: 'group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l',
 						className,
 					)}
 					{...props}
@@ -398,7 +398,9 @@ const SidebarSeparator = React.forwardRef<
 		<hr
 			ref={ref}
 			data-sidebar="separator"
-			className={cn('mx-2 w-auto bg-separator', className)}
+			// Preflight gives `hr` a top border and zero height, so `bg-*` alone
+			// paints nothing and the rule falls back to the default border colour.
+			className={cn('mx-2 h-px w-auto border-0 bg-separator', className)}
 			{...props}
 		/>
 	);
@@ -692,7 +694,7 @@ const SidebarMenuSkeleton = React.forwardRef<
 				/>
 			)}
 			<Skeleton
-				className="h-4 max-w-[--skeleton-width] flex-1"
+				className="h-4 max-w-(--skeleton-width) flex-1"
 				data-sidebar="menu-skeleton-text"
 				style={
 					{

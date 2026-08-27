@@ -39,7 +39,7 @@ function DialogContent({
 			{showOverlay && <DialogOverlay />}
 			<DialogPrimitive.Popup
 				className={cn(
-					'fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl border border-[var(--surface-border-base)] bg-[var(--dialog-surface-bg)] p-4 text-[var(--dialog-surface-fg)] text-sm shadow-[var(--dialog-surface-shadow)] outline-none transition-[opacity,transform] duration-200 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 sm:max-w-sm',
+					'fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl bg-[var(--dialog-surface-bg)] p-4 text-[var(--dialog-surface-fg)] text-sm shadow-[var(--dialog-surface-shadow)] outline-none transition-[opacity,transform] duration-200 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 sm:max-w-sm',
 					className,
 				)}
 				{...props}

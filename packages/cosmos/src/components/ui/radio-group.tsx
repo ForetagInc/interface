@@ -19,8 +19,10 @@ function RadioGroupItem({
 }: React.ComponentProps<typeof RadioPrimitive.Root>) {
 	return (
 		<RadioPrimitive.Root
+			// Shares the `--checkbox-*` token family so the two selection
+			// controls match; `border-primary` read as flat black in most themes.
 			className={cn(
-				'size-4 shrink-0 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 data-disabled:cursor-not-allowed data-disabled:opacity-50',
+				'inline-flex size-4 shrink-0 items-center justify-center rounded-full border shadow-[var(--checkbox-shadow,var(--borders-base))] outline-none transition-[background-color,border-color,box-shadow,color] [background:var(--checkbox-bg,var(--input-bg))] [border-color:var(--checkbox-border,var(--surface-border-base))] [color:transparent] focus-visible:shadow-[var(--borders-interactive-with-active)] data-disabled:cursor-not-allowed data-disabled:opacity-50 hover:[background:var(--checkbox-bg-hover,var(--input-bg-hover))] hover:[border-color:var(--checkbox-border-hover,var(--checkbox-border,var(--surface-border-base)))] data-checked:shadow-[var(--checkbox-checked-shadow,var(--button-shadow-primary))] data-checked:[background:var(--checkbox-checked-bg,var(--button-primary-bg))] data-checked:[border-color:var(--checkbox-checked-border,var(--button-primary-border))] data-checked:[color:var(--checkbox-checked-fg,var(--button-primary-fg))]',
 				className,
 			)}
 			{...props}
