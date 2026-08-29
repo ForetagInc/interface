@@ -14,11 +14,27 @@ the toolbar re-renders them.
 
 ## Surfaces
 
-<Swatches tokens={['background', 'foreground', 'card', 'popover', 'muted', 'accent']} />
+<Swatches tokens={['background', 'card', 'popover', 'muted', 'accent']} />
+
+## Text on surfaces
+
+Foreground tokens are text colours, so they are shown rendered on the surface
+they pair with rather than as a standalone chip.
+
+<Swatches tokens={['foreground', 'card-foreground', 'muted-foreground', 'accent-foreground']} />
 
 ## Interactive
 
-<Swatches tokens={['primary', 'secondary', 'destructive', 'border', 'input', 'ring']} />
+<Swatches tokens={['primary', 'secondary', 'destructive']} />
+
+<Swatches tokens={['primary-foreground', 'secondary-foreground', 'destructive-foreground']} />
+
+## Lines
+
+These three sit close to the surfaces they divide, so each chip carries its own
+contrast ring — a themed border would simply disappear.
+
+<Swatches tokens={['border', 'input', 'ring']} />
 
 ## How a token resolves
 

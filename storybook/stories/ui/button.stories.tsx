@@ -1,6 +1,15 @@
 import { Button } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+const VARIANTS = [
+	'primary',
+	'secondary',
+	'destructive',
+	'outline',
+	'ghost',
+	'link',
+] as const;
+
 const meta = {
 	title: 'Primitives/Button',
 	component: Button,
@@ -11,17 +20,7 @@ const meta = {
 		},
 		variant: {
 			control: 'select',
-			options: [
-				'default',
-				'primary',
-				'destructive',
-				'danger',
-				'outline',
-				'secondary',
-				'ghost',
-				'transparent',
-				'link',
-			],
+			options: [...VARIANTS],
 		},
 		isLoading: { control: 'boolean' },
 		disabled: { control: 'boolean' },
@@ -29,7 +28,7 @@ const meta = {
 	args: {
 		children: 'Button',
 		size: 'default',
-		variant: 'default',
+		variant: 'secondary',
 		isLoading: false,
 		disabled: false,
 	},
@@ -40,6 +39,21 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+// Every variant side by side — the list is otherwise unlocked by any test, so
+// this is what makes an accidental duplicate or a theme regression visible.
+export const AllVariants: Story = {
+	parameters: { controls: { exclude: ['variant'] } },
+	render: (args) => (
+		<div className="flex flex-wrap items-center gap-3">
+			{VARIANTS.map((variant) => (
+				<Button {...args} key={variant} variant={variant}>
+					{variant}
+				</Button>
+			))}
+		</div>
+	),
+};
 
 export const Icon: Story = {
 	args: {

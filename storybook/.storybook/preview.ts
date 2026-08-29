@@ -14,7 +14,10 @@ const themeOptions = Object.entries(APP_THEME_DEFINITIONS).flatMap(
 	([theme, { label, modes }]) =>
 		modes.map((mode) => ({
 			value: `${theme}-${mode}`,
-			title: modes.length > 1 ? `${label} ${mode}` : label,
+			title:
+				modes.length > 1
+					? `${label} (${mode[0].toUpperCase()}${mode.slice(1)})`
+					: label,
 		})),
 );
 

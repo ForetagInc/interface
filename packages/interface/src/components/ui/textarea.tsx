@@ -3,15 +3,22 @@ import * as React from 'react';
 import { cn } from '../utils';
 
 const textareaVariants = tv({
-	base: 'caret-foreground bg-[var(--input-bg)] hover:bg-[var(--input-bg-hover)] border-0 shadow-[var(--input-shadow)] text-[var(--input-fg)] transition-[color,background-color,border-color,box-shadow] relative w-full appearance-none rounded-md outline-none ring-0 resize-y',
+	base: 'caret-foreground bg-[var(--input-bg)] hover:bg-[var(--input-bg-hover)] border-0 shadow-[var(--input-shadow)] text-[var(--input-fg)] transition-[color,background-color,border-color,box-shadow] relative w-full appearance-none rounded-md outline-none ring-0',
 	variants: {
 		size: {
 			base: 'min-h-20 px-2 py-1.5 text-sm placeholder:text-sm',
 			small: 'min-h-16 px-2 py-1 text-xs placeholder:text-xs',
 		},
+		resizable: {
+			true: 'resize',
+			false: 'resize-none',
+			horizontal: 'resize-x',
+			vertical: 'resize-y',
+		},
 	},
 	defaultVariants: {
 		size: 'base',
+		resizable: 'vertical',
 	},
 });
 
@@ -20,11 +27,11 @@ interface TextareaProps
 		VariantProps<typeof textareaVariants> {}
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-	({ className, size, ...props }, ref) => {
+	({ className, size, resizable, ...props }, ref) => {
 		return (
 			<textarea
 				className={cn(
-					textareaVariants({ size }),
+					textareaVariants({ size, resizable }),
 					'placeholder:text-[var(--input-placeholder)]',
 					'focus:ring-0 focus-visible:shadow-[var(--input-shadow-focus)] focus-visible:ring-0',
 					'disabled:cursor-not-allowed disabled:bg-[var(--input-disabled-bg)] disabled:text-[var(--input-disabled-fg)] disabled:placeholder:text-[var(--input-disabled-fg)]',

@@ -114,12 +114,12 @@ function SelectScrollUpButton({
 	return (
 		<SelectPrimitive.ScrollUpArrow
 			className={cn(
-				'flex cursor-default items-center justify-center py-1',
+				'absolute inset-x-0 top-0 z-10 flex cursor-default items-center justify-center rounded-t-md bg-[var(--select-content-bg)] py-1 text-[var(--select-content-fg)]',
 				className,
 			)}
 			{...props}
 		>
-			<i className="ti ti-chevron-up text-lg" />
+			<i className="ti ti-chevron-up text-base" />
 		</SelectPrimitive.ScrollUpArrow>
 	);
 }
@@ -131,12 +131,12 @@ function SelectScrollDownButton({
 	return (
 		<SelectPrimitive.ScrollDownArrow
 			className={cn(
-				'flex cursor-default items-center justify-center py-1',
+				'absolute inset-x-0 bottom-0 z-10 flex cursor-default items-center justify-center rounded-b-md bg-[var(--select-content-bg)] py-1 text-[var(--select-content-fg)]',
 				className,
 			)}
 			{...props}
 		>
-			<i className="ti ti-chevron-down text-lg" />
+			<i className="ti ti-chevron-down text-base" />
 		</SelectPrimitive.ScrollDownArrow>
 	);
 }
@@ -144,7 +144,11 @@ function SelectScrollDownButton({
 type SelectContentProps = React.ComponentProps<typeof SelectPrimitive.Popup> &
 	Pick<
 		React.ComponentProps<typeof SelectPrimitive.Positioner>,
-		'side' | 'align' | 'sideOffset' | 'collisionPadding'
+		| 'side'
+		| 'align'
+		| 'sideOffset'
+		| 'collisionPadding'
+		| 'alignItemWithTrigger'
 	>;
 
 function SelectContent({
@@ -154,6 +158,11 @@ function SelectContent({
 	align,
 	sideOffset = 8,
 	collisionPadding = 24,
+	// Base UI defaults this to true, which overlaps the popup onto the trigger so
+	// the selected item's text lines up with the trigger's value. That makes the
+	// popup jump around with the selection, and it only applies to mouse input, so
+	// click and keyboard open differently. Default to a conventional dropdown.
+	alignItemWithTrigger = false,
 	...props
 }: SelectContentProps) {
 	return (
@@ -164,6 +173,7 @@ function SelectContent({
 				align={align}
 				sideOffset={sideOffset}
 				collisionPadding={collisionPadding}
+				alignItemWithTrigger={alignItemWithTrigger}
 			>
 				<SelectPrimitive.Popup
 					className={cn(

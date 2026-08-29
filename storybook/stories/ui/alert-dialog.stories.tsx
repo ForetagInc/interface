@@ -23,7 +23,7 @@ type Story = StoryObj;
 export const Destructive: Story = {
 	render: () => (
 		<AlertDialog>
-			<AlertDialogTrigger render={<Button variant="danger" />}>
+			<AlertDialogTrigger render={<Button variant="destructive" />}>
 				Delete workspace
 			</AlertDialogTrigger>
 			<AlertDialogContent>

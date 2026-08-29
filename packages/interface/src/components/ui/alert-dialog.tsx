@@ -101,7 +101,7 @@ const AlertDialogAction = React.forwardRef<
 >(({ className, ...props }, ref) => (
 	<AlertDialogPrimitive.Close
 		ref={ref}
-		className={cn(buttonVariants(), className)}
+		className={cn(buttonVariants({ variant: 'primary' }), className)}
 		{...props}
 	/>
 ));

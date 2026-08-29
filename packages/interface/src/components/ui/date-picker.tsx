@@ -223,7 +223,7 @@ export function DatePicker({
 			</div>
 			<PopoverContent
 				anchor={anchorRef}
-				className="w-auto overflow-visible border-0 bg-transparent p-2 shadow-none"
+				className="w-auto border-0 bg-transparent p-2 shadow-none"
 				align="center"
 			>
 				<Calendar

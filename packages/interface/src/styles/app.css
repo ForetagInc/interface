@@ -145,21 +145,53 @@
 	);
 	--button-danger-fg: var(--destructive-foreground);
 	--button-shadow-danger-active: var(--button-shadow-danger);
-	--button-overlay-strong: linear-gradient(
-		to bottom,
-		rgb(255 255 255 / 0.1),
-		transparent
+	--button-outline-bg: transparent;
+	--button-outline-bg-hover: transparent;
+	--button-outline-bg-active: transparent;
+	--button-outline-border: var(--surface-border-base);
+	--button-outline-border-hover: color-mix(
+		in oklab,
+		var(--surface-border-base),
+		hsl(var(--theme-foreground)) 22%
 	);
-	--button-overlay-soft: linear-gradient(
-		to bottom,
-		rgb(255 255 255 / 0.7),
-		transparent
+	--button-outline-border-active: color-mix(
+		in oklab,
+		var(--surface-border-base),
+		hsl(var(--theme-foreground)) 34%
 	);
-	--button-overlay-secondary: linear-gradient(
-		to bottom,
-		rgb(255 255 255 / 0.16),
-		transparent
-	);
+	--button-outline-fg: var(--foreground);
+	--button-shadow-outline: none;
+	--button-shadow-outline-active: none;
+	--button-ghost-bg: transparent;
+	--button-ghost-bg-hover: var(--accent);
+	--button-ghost-bg-active: var(--accent);
+	--button-ghost-border: transparent;
+	--button-ghost-border-hover: transparent;
+	--button-ghost-border-active: transparent;
+	--button-ghost-fg: var(--foreground);
+	--button-ghost-fg-hover: var(--accent-foreground);
+	--button-shadow-ghost: none;
+	--button-shadow-ghost-active: none;
+	--button-link-bg: transparent;
+	--button-link-border: transparent;
+	--button-link-fg: var(--primary);
+	--button-shadow-link: none;
+	--button-shadow-link-active: none;
+	--button-disabled-bg: var(--muted);
+	--button-disabled-border: var(--ui-border-base);
+	--button-disabled-fg: var(--muted-foreground);
+	--calendar-cell-size: 2.25rem;
+	--calendar-gap: 0.25rem;
+	--calendar-nav-size: 1.75rem;
+	--calendar-caption-height: 2.5rem;
+	--calendar-padding: 0.75rem;
+	--calendar-chevron-size: 1rem;
+	--calendar-cell-size-compact: 2rem;
+	--calendar-gap-compact: 0.125rem;
+	--calendar-nav-size-compact: 1.5rem;
+	--calendar-caption-height-compact: 2rem;
+	--calendar-padding-compact: 0rem;
+	--calendar-chevron-size-compact: 0.875rem;
 	--input-bg: color-mix(
 		in oklab,
 		hsl(var(--theme-background)),
