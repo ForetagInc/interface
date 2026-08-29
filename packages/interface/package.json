@@ -7,7 +7,7 @@
 	"author": "Chiru <chiru@foretag.co> (https://foretag.co)",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/ForetagInc/cosmos.git",
+		"url": "git+https://github.com/ForetagInc/interface.git",
 		"directory": "packages/interface"
 	},
 	"publishConfig": {
