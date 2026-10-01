@@ -1,4 +1,10 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@foretag/interface';
+import {
+	Button,
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta = {
@@ -21,5 +27,31 @@ export const Default: Story = {
 			<TabsContent value="activity">Four orders were placed today.</TabsContent>
 			<TabsContent value="settings">Manage workspace preferences.</TabsContent>
 		</Tabs>
+	),
+};
+
+// TabsList takes Button's sizes, so a tab group and its neighbouring actions
+// share one height in a toolbar.
+export const Sizes: Story = {
+	render: () => (
+		<div style={{ display: 'grid', gap: 12 }}>
+			{(['sm', 'default', 'lg', 'xl'] as const).map((size) => (
+				<div
+					key={size}
+					style={{ display: 'flex', alignItems: 'center', gap: 8 }}
+				>
+					<Tabs defaultValue="day">
+						<TabsList size={size} aria-label={`Range (${size})`}>
+							<TabsTrigger value="day">Day</TabsTrigger>
+							<TabsTrigger value="week">Week</TabsTrigger>
+							<TabsTrigger value="month">Month</TabsTrigger>
+						</TabsList>
+					</Tabs>
+					<Button variant="outline" size={size}>
+						Export
+					</Button>
+				</div>
+			))}
+		</div>
 	),
 };

@@ -1,7 +1,7 @@
 {
 	"name": "@foretag/interface",
 	"private": false,
-	"version": "1.0.0-alpha.4",
+	"version": "1.0.0-alpha.5",
 	"description": "Interface UI components, design tokens, primitives and shared interface foundations by Foretag",
 	"license": "Unlicense",
 	"author": "Chiru <chiru@foretag.co> (https://foretag.co)",

@@ -12,6 +12,7 @@ import {
 	Popover,
 	PopoverAnchor,
 	PopoverContent,
+	PopoverForm,
 	PopoverTrigger,
 	Select,
 	SelectContent,
@@ -171,6 +172,61 @@ describe('Interface UI primitives', () => {
 			</SidebarProvider>,
 		);
 		expect(screen.getByText('Navigation')).toBeInTheDocument();
+	});
+
+	describe('popover form', () => {
+		function EditName({ validate }: { validate: (name: string) => boolean }) {
+			const [name, setName] = React.useState('Ada');
+			return (
+				<Popover>
+					<PopoverTrigger>Name: {name}</PopoverTrigger>
+					<PopoverContent>
+						<PopoverForm
+							onSubmit={(event) => {
+								const next = String(
+									new FormData(event.currentTarget).get('name'),
+								);
+								if (!validate(next)) {
+									event.preventDefault();
+									return;
+								}
+								setName(next);
+							}}
+						>
+							<Input aria-label="Name" name="name" defaultValue={name} />
+						</PopoverForm>
+					</PopoverContent>
+				</Popover>
+			);
+		}
+
+		test('submitting saves and closes the popover', async () => {
+			const user = userEvent.setup();
+			render(<EditName validate={() => true} />);
+
+			await user.click(screen.getByRole('button', { name: 'Name: Ada' }));
+			const field = await screen.findByRole('textbox', { name: 'Name' });
+			await user.clear(field);
+			await user.type(field, 'Grace{Enter}');
+
+			await waitFor(() => {
+				expect(screen.queryByRole('textbox', { name: 'Name' })).toBeNull();
+			});
+			expect(screen.getByRole('button', { name: 'Name: Grace' })).toBeVisible();
+		});
+
+		test('preventing default keeps the popover open with the draft', async () => {
+			const user = userEvent.setup();
+			render(<EditName validate={(name) => name.length > 0} />);
+
+			await user.click(screen.getByRole('button', { name: 'Name: Ada' }));
+			const field = await screen.findByRole('textbox', { name: 'Name' });
+			await user.clear(field);
+			await user.keyboard('{Enter}');
+
+			expect(screen.getByRole('textbox', { name: 'Name' })).toHaveValue('');
+			expect(screen.getByRole('button', { name: 'Name: Ada' })).toBeVisible();
+		});
 	});
 
 	describe('popover anchor', () => {

@@ -283,8 +283,8 @@
 	--dropdown-item-hover-bg: hsl(var(--theme-accent));
 	--dropdown-item-hover-fg: hsl(var(--theme-accent-foreground));
 	--dropdown-muted: hsl(var(--theme-muted-foreground));
-	--popover-surface-bg: hsl(var(--theme-popover));
-	--popover-surface-fg: hsl(var(--theme-popover-foreground));
+	--popover-surface-bg: var(--ui-bg-component);
+	--popover-surface-fg: var(--ui-fg-base);
 	--popover-surface-shadow: var(--elevation-flyout);
 	--dialog-overlay-bg: rgb(24 24 27 / 0.4);
 	--dialog-surface-bg: hsl(var(--theme-card));
