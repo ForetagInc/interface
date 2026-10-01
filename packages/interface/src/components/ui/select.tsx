@@ -1,37 +1,37 @@
-import { Select as SelectPrimitive } from "@base-ui/react/select";
-import * as React from "react";
-import { tv } from "tailwind-variants";
-import { cn } from "../utils";
+import { Select as SelectPrimitive } from '@base-ui/react/select';
+import * as React from 'react';
+import { tv } from 'tailwind-variants';
+import { cn } from '../utils';
 
-type SelectSize = "base" | "small";
+type SelectSize = 'base' | 'small';
 
-const SelectSizeContext = React.createContext<SelectSize>("base");
+const SelectSizeContext = React.createContext<SelectSize>('base');
 
 const selectTriggerVariants = tv({
-	base: "flex w-full items-center justify-between gap-2 rounded-md border-0 bg-[var(--select-bg)] text-[var(--select-fg)] shadow-[var(--select-shadow)] transition-[color,background-color,border-color,box-shadow] hover:bg-[var(--select-bg-hover)] focus:outline-none focus-visible:shadow-[var(--select-shadow-focus)] focus-visible:ring-0 data-disabled:cursor-not-allowed data-disabled:bg-[var(--select-disabled-bg)] data-disabled:text-[var(--select-disabled-fg)] data-[placeholder]:text-[var(--select-placeholder)] [&>span]:line-clamp-1",
+	base: 'flex w-full items-center justify-between gap-2 rounded-md border-0 bg-[var(--select-bg)] text-[var(--select-fg)] shadow-[var(--select-shadow)] transition-[color,background-color,border-color,box-shadow] hover:bg-[var(--select-bg-hover)] focus:outline-none focus-visible:shadow-[var(--select-shadow-focus)] focus-visible:ring-0 data-disabled:cursor-not-allowed data-disabled:bg-[var(--select-disabled-bg)] data-disabled:text-[var(--select-disabled-fg)] data-[placeholder]:text-[var(--select-placeholder)] [&>span]:line-clamp-1',
 	variants: {
 		size: {
-			base: "h-9 px-2.5 py-2 text-sm",
-			small: "h-8 px-2 py-1.5 text-xs",
+			base: 'h-9 px-2.5 py-2 text-sm',
+			small: 'h-8 px-2 py-1.5 text-xs',
 		},
 	},
 	defaultVariants: {
-		size: "base",
+		size: 'base',
 	},
 });
 
 const selectItemVariants = tv({
 	// Concentric with the popup: an inset row's corners curve around the same
 	// centre as the popup's only if its radius is the popup's minus the inset.
-	base: "relative flex w-full cursor-pointer select-none items-center gap-2 rounded-[max(0px,calc(var(--select-popup-radius)-var(--select-popup-inset)))] pr-2 pl-8 text-[var(--select-content-fg)] outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-accent data-highlighted:text-accent-foreground",
+	base: 'relative flex w-full cursor-pointer select-none items-center gap-2 rounded-[max(0px,calc(var(--select-popup-radius)-var(--select-popup-inset)))] pr-2 pl-8 text-[var(--select-content-fg)] outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-accent data-highlighted:text-accent-foreground',
 	variants: {
 		size: {
-			base: "h-8 py-1.5 text-sm",
-			small: "h-7 py-1 text-xs",
+			base: 'h-8 py-1.5 text-sm',
+			small: 'h-7 py-1 text-xs',
 		},
 	},
 	defaultVariants: {
-		size: "base",
+		size: 'base',
 	},
 });
 
@@ -39,7 +39,7 @@ type SelectProps = React.ComponentProps<typeof SelectPrimitive.Root> & {
 	size?: SelectSize;
 };
 
-const Select = ({ size = "base", children, ...props }: SelectProps) => (
+const Select = ({ size = 'base', children, ...props }: SelectProps) => (
 	<SelectSizeContext.Provider value={size}>
 		<SelectPrimitive.Root {...props}>{children}</SelectPrimitive.Root>
 	</SelectSizeContext.Provider>
@@ -54,7 +54,7 @@ function isEmptyValue(value: unknown) {
 	return (
 		value === null ||
 		value === undefined ||
-		value === "" ||
+		value === '' ||
 		(Array.isArray(value) && value.length === 0)
 	);
 }
@@ -73,7 +73,7 @@ function SelectValue({ placeholder, children, ...props }: SelectValueProps) {
 		<SelectPrimitive.Value placeholder={placeholder} {...props}>
 			{(value) => {
 				if (isEmptyValue(value)) return placeholder;
-				return typeof children === "function" ? children(value) : children;
+				return typeof children === 'function' ? children(value) : children;
 			}}
 		</SelectPrimitive.Value>
 	);
@@ -106,7 +106,7 @@ function SelectScrollUpButton({
 	return (
 		<SelectPrimitive.ScrollUpArrow
 			className={cn(
-				"absolute inset-x-0 top-0 z-10 flex cursor-default items-center justify-center rounded-t-(--select-popup-radius) bg-(--select-content-bg) py-1 text-(--select-content-fg)",
+				'absolute inset-x-0 top-0 z-10 flex cursor-default items-center justify-center rounded-t-(--select-popup-radius) bg-(--select-content-bg) py-1 text-(--select-content-fg)',
 				className,
 			)}
 			{...props}
@@ -123,7 +123,7 @@ function SelectScrollDownButton({
 	return (
 		<SelectPrimitive.ScrollDownArrow
 			className={cn(
-				"absolute inset-x-0 bottom-0 z-10 flex cursor-default items-center justify-center rounded-b-(--select-popup-radius) bg-(--select-content-bg) py-1 text-(--select-content-fg)",
+				'absolute inset-x-0 bottom-0 z-10 flex cursor-default items-center justify-center rounded-b-(--select-popup-radius) bg-(--select-content-bg) py-1 text-(--select-content-fg)',
 				className,
 			)}
 			{...props}
@@ -136,11 +136,11 @@ function SelectScrollDownButton({
 type SelectContentProps = React.ComponentProps<typeof SelectPrimitive.Popup> &
 	Pick<
 		React.ComponentProps<typeof SelectPrimitive.Positioner>,
-		| "side"
-		| "align"
-		| "sideOffset"
-		| "collisionPadding"
-		| "alignItemWithTrigger"
+		| 'side'
+		| 'align'
+		| 'sideOffset'
+		| 'collisionPadding'
+		| 'alignItemWithTrigger'
 	>;
 
 function SelectContent({
@@ -169,7 +169,7 @@ function SelectContent({
 			>
 				<SelectPrimitive.Popup
 					className={cn(
-						"max-h-(--available-height) min-w-(--anchor-width) origin-(--transform-origin) overflow-y-auto overflow-x-hidden rounded-(--select-popup-radius) [--select-popup-inset:--spacing(0.5)] [--select-popup-radius:var(--radius-md)] bg-(--select-content-bg) text-(--select-content-fg) shadow-(--select-content-shadow) transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0",
+						'max-h-(--available-height) min-w-(--anchor-width) origin-(--transform-origin) overflow-y-auto overflow-x-hidden rounded-(--select-popup-radius) [--select-popup-inset:--spacing(0.5)] [--select-popup-radius:var(--radius-md)] bg-(--select-content-bg) text-(--select-content-fg) shadow-(--select-content-shadow) transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0',
 						className,
 					)}
 					{...props}
@@ -191,7 +191,7 @@ function SelectLabel({
 }: React.ComponentProps<typeof SelectPrimitive.GroupLabel>) {
 	return (
 		<SelectPrimitive.GroupLabel
-			className={cn("py-1.5 pr-2 pl-8 font-semibold text-sm", className)}
+			className={cn('py-1.5 pr-2 pl-8 font-semibold text-sm', className)}
 			{...props}
 		/>
 	);
@@ -245,10 +245,10 @@ function SelectItem({
 }
 
 // Base UI's select has no separator part, so this is a plain presentational rule.
-function SelectSeparator({ className, ...props }: React.ComponentProps<"hr">) {
+function SelectSeparator({ className, ...props }: React.ComponentProps<'hr'>) {
 	return (
 		<hr
-			className={cn("-mx-1 my-1 h-px border-0 bg-separator", className)}
+			className={cn('-mx-1 my-1 h-px border-0 bg-separator', className)}
 			{...props}
 		/>
 	);
