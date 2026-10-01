@@ -1,5 +1,3 @@
-/** biome-ignore-all lint/suspicious/noDocumentCookie: Placeholders */
-
 import { useRender } from '@base-ui/react/use-render';
 import * as React from 'react';
 import { tv, type VariantProps } from 'tailwind-variants';
@@ -83,6 +81,7 @@ const SidebarProvider = React.forwardRef<
 				}
 
 				// This sets the cookie to keep the sidebar state.
+				// oxlint-disable-next-line unicorn/no-document-cookie -- Cookie Store API is not yet baseline
 				document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
 			},
 			[setOpenProp, open],
@@ -675,8 +674,9 @@ const SidebarMenuSkeleton = React.forwardRef<
 		showIcon?: boolean;
 	}
 >(({ className, showIcon = false, ...props }, ref) => {
-	// Random width between 50 to 90%.
+	// Random width between 50 to 90%, fixed for the lifetime of the skeleton.
 	const width = React.useMemo(() => {
+		// oxlint-disable-next-line react/purity -- memoised once, so re-renders keep the same width
 		return `${Math.floor(Math.random() * 40) + 50}%`;
 	}, []);
 

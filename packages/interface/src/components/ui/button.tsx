@@ -34,7 +34,8 @@ const buttonVariants = tv({
 });
 
 export interface ButtonProps
-	extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+	extends
+		React.ButtonHTMLAttributes<HTMLButtonElement>,
 		VariantProps<typeof buttonVariants> {
 	/** Render as a different element, e.g. `render={<a href="/" />}`. */
 	render?: useRender.RenderProp;

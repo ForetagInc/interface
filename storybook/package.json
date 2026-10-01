@@ -6,8 +6,7 @@
 	"scripts": {
 		"typecheck": "bunx tsc --noEmit",
 		"storybook": "storybook dev -p 6006",
-		"build-storybook": "STORYBOOK_DISABLE_TELEMETRY=1 storybook build --output-dir ${STORYBOOK_OUTPUT_DIR:-./storybook-static}",
-		"build-storybook:cf": "STORYBOOK_BASE_PATH=/ bun run build-storybook"
+		"build-storybook": "STORYBOOK_DISABLE_TELEMETRY=1 storybook build --output-dir ${STORYBOOK_OUTPUT_DIR:-./storybook-static}"
 	},
 	"dependencies": {
 		"@foretag/interface": "workspace:*"
@@ -23,12 +22,12 @@
 		"@vitejs/plugin-react": "^5.2.0",
 		"@vitest/browser": "^3",
 		"@vitest/coverage-v8": "^3.2.7",
-		"playwright": "^1.62.1",
 		"react-hook-form": "^7.85.0",
 		"remark-gfm": "^4.0.1",
 		"storybook": "^10.5.8",
 		"vite": "^7.3.6",
 		"vitest": "^3.2.7",
+		"webdriverio": "^9.32.0",
 		"wrangler": "^4.123.0"
 	}
 }

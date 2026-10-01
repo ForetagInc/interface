@@ -31,7 +31,7 @@ function Slider({
 				{/* Thumbs sit outside the track so the track's overflow-hidden cannot clip them. */}
 				{Array.from({ length: thumbCount }, (_, index) => (
 					<SliderPrimitive.Thumb
-						// biome-ignore lint/suspicious/noArrayIndexKey: thumbs are positional and have no stable id
+						// Thumbs are positional and have no stable id, so the index is the key.
 						key={index}
 						index={index}
 						className="size-3 shrink-0 rounded-full border border-ring bg-white ring-ring/50 transition-[box-shadow] select-none hover:ring-3 focus-visible:outline-hidden focus-visible:ring-3 active:ring-3 data-disabled:pointer-events-none"

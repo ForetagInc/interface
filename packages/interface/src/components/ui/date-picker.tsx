@@ -41,6 +41,9 @@ export function DatePicker({
 		[min],
 	);
 
+	// The typed parts are editable state, so they resync whenever the controlled
+	// `date` changes rather than being derived from it during render.
+	/* oxlint-disable react/set-state-in-effect */
 	React.useEffect(() => {
 		if (!date) {
 			setDayPart('');
@@ -56,6 +59,7 @@ export function DatePicker({
 			Boolean(normalizedMin && isBefore(startOfDay(date), normalizedMin)),
 		);
 	}, [date, normalizedMin]);
+	/* oxlint-enable react/set-state-in-effect */
 
 	const commitValue = React.useCallback(() => {
 		const day = dayPart.trim();
@@ -249,6 +253,7 @@ export function DatePicker({
 						setOpen(false);
 					}}
 					// react-day-picker 10 dropped `initialFocus`; `autoFocus` is its replacement.
+					// oxlint-disable-next-line jsx-a11y/no-autofocus -- focuses the grid only when the popover opens
 					autoFocus
 				/>
 			</PopoverContent>

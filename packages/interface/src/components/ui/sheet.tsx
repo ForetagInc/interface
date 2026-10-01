@@ -84,7 +84,8 @@ const sheetVariants = tv({
 });
 
 interface SheetContentProps
-	extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Popup>,
+	extends
+		React.ComponentPropsWithoutRef<typeof SheetPrimitive.Popup>,
 		VariantProps<typeof sheetVariants> {
 	overlay?: boolean;
 	inset?: boolean;

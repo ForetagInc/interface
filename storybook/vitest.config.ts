@@ -5,18 +5,18 @@ import { defineConfig } from 'vitest/config';
 
 const here = dirname(fileURLToPath(import.meta.url));
 
-// Renders every story in a real browser and fails on render errors or failed
-// play functions — the automated version of the manual story sweep.
+// Renders every story in headless Chrome and fails on render errors, failed
+// play functions and axe violations. WebdriverIO resolves a chromedriver for the
+// installed Chrome, so CI needs no separate browser download step.
 export default defineConfig({
 	plugins: [storybookTest({ configDir: join(here, '.storybook') })],
 	test: {
 		name: 'storybook',
-		setupFiles: ['./.storybook/vitest.setup.ts'],
 		browser: {
 			enabled: true,
 			headless: true,
-			provider: 'playwright',
-			instances: [{ browser: 'chromium' }],
+			provider: 'webdriverio',
+			instances: [{ browser: 'chrome' }],
 		},
 	},
 });

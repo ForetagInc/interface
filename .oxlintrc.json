@@ -1,0 +1,35 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"plugins": ["typescript", "unicorn", "oxc", "react", "jsx-a11y", "import"],
+	"categories": {
+		"correctness": "error"
+	},
+	"env": {
+		"browser": true,
+		"node": true
+	},
+	"ignorePatterns": [
+		"**/dist",
+		"**/storybook-static",
+		"**/coverage",
+		"**/test-results",
+		"**/.wrangler",
+		"**/node_modules"
+	],
+	"rules": {
+		"react/react-in-jsx-scope": "off",
+		"react/rules-of-hooks": "error",
+		"react/exhaustive-deps": "error",
+		"react/no-array-index-key": "error",
+		"jsx-a11y/label-has-associated-control": "error",
+		"unicorn/no-document-cookie": "error"
+	},
+	"overrides": [
+		{
+			"files": ["**/*.stories.tsx"],
+			"rules": {
+				"react/rules-of-hooks": "off"
+			}
+		}
+	]
+}

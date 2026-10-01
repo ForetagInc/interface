@@ -32,10 +32,10 @@ jobs:
       - name: Verify Bun version
         run: test "$(bun --version)" = "$BUN_VERSION"
 
-      - name: Lint
+      - name: Lint (oxlint)
         run: bun run lint
 
-      - name: Format check
+      - name: Format check (oxfmt)
         run: bun run format:check
 
       - name: Typecheck
@@ -76,10 +76,8 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      # Story tests render every story in a real browser, so the binary must be present.
-      - name: Install Playwright Chromium
-        run: bunx playwright install --with-deps chromium
-
+      # No browser install step: ubuntu-latest ships Chrome, and WebdriverIO
+      # fetches the matching chromedriver on first run.
       - name: Run story tests
         run: bun run test:stories
 

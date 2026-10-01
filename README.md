@@ -19,4 +19,4 @@ bun run dev
 | `bun run dev` | Build the package, then serve Storybook on port 6006 |
 | `bun run build` | Build the package and the static Storybook site |
 | `bun run test` | Unit tests plus the browser story tests |
-| `bun run ci` | Everything CI runs: lint, format check, typecheck, unit tests, build |
+| `bun run ci` | Everything CI runs: lint, format check, typecheck, unit tests, story tests, build |

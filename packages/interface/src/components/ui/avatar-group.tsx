@@ -15,8 +15,10 @@ const overlapBySize: Record<AvatarSize, string> = {
 	xlarge: '-ml-3',
 };
 
-interface AvatarGroupProps
-	extends Omit<React.ComponentProps<'div'>, 'children'> {
+interface AvatarGroupProps extends Omit<
+	React.ComponentProps<'div'>,
+	'children'
+> {
 	children: React.ReactElement<AvatarProps> | React.ReactElement<AvatarProps>[];
 	/** Sizes every avatar in the group, the overflow chip included. */
 	size?: AvatarSize;

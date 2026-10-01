@@ -16,7 +16,8 @@ const nativeSelectVariants = tv({
 });
 
 export interface NativeSelectProps
-	extends Omit<React.ComponentProps<'select'>, 'size'>,
+	extends
+		Omit<React.ComponentProps<'select'>, 'size'>,
 		VariantProps<typeof nativeSelectVariants> {}
 
 const NativeSelect = React.forwardRef<HTMLSelectElement, NativeSelectProps>(

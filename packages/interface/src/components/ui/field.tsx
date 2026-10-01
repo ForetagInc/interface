@@ -216,7 +216,7 @@ function FieldError({
 			<ul className="ml-4 flex list-disc flex-col gap-1">
 				{errors.map(
 					(error, index) =>
-						// biome-ignore lint/suspicious/noArrayIndexKey: N/A
+						// oxlint-disable-next-line react/no-array-index-key -- errors have no stable id
 						error?.message && <li key={index}>{error.message}</li>,
 				)}
 			</ul>

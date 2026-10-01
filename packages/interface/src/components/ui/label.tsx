@@ -28,7 +28,7 @@ type LabelProps = React.ComponentProps<'label'> &
 // Base UI has no Label primitive; a native <label> already carries the behaviour.
 function Label({ className, size, weight, ...props }: LabelProps) {
 	return (
-		// biome-ignore lint/a11y/noLabelWithoutControl: consumers associate via htmlFor or nesting
+		// oxlint-disable-next-line jsx-a11y/label-has-associated-control -- consumers associate via htmlFor or nesting
 		<label
 			className={cn(labelVariants({ size, weight }), className)}
 			{...props}

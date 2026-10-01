@@ -16,7 +16,8 @@ const currencyInputVariants = tv({
 });
 
 export interface CurrencyInputProps
-	extends Omit<React.ComponentProps<'input'>, 'size'>,
+	extends
+		Omit<React.ComponentProps<'input'>, 'size'>,
 		VariantProps<typeof currencyInputVariants> {
 	code?: string;
 	symbol?: string;

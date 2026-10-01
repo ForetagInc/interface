@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, test } from 'vitest';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import * as React from 'react';
 import {
 	Button,
@@ -135,6 +136,30 @@ describe('Interface UI primitives', () => {
 		);
 		expect(screen.getByRole('tab', { name: 'A' })).toBeInTheDocument();
 		expect(screen.getByText('Panel A')).toBeInTheDocument();
+	});
+
+	test('tabs switch panels on click and arrow keys', async () => {
+		const user = userEvent.setup();
+		render(
+			<Tabs defaultValue="a">
+				<TabsList>
+					<TabsTrigger value="a">A</TabsTrigger>
+					<TabsTrigger value="b">B</TabsTrigger>
+				</TabsList>
+				<TabsContent value="a">Panel A</TabsContent>
+				<TabsContent value="b">Panel B</TabsContent>
+			</Tabs>,
+		);
+
+		await user.click(screen.getByRole('tab', { name: 'B' }));
+		expect(screen.getByRole('tab', { name: 'B' })).toHaveAttribute(
+			'aria-selected',
+			'true',
+		);
+		expect(screen.getByRole('tabpanel')).toHaveTextContent('Panel B');
+
+		await user.keyboard('{ArrowLeft}');
+		expect(screen.getByRole('tab', { name: 'A' })).toHaveFocus();
 	});
 
 	test('renders sidebar', () => {
