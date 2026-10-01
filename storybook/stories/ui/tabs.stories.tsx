@@ -7,18 +7,29 @@ import {
 } from '@foretag/interface';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-const meta: Meta = {
+type TabsDemoArgs = {
+	/** Lives on TabsList; reaches every trigger via context. */
+	size: 'sm' | 'default' | 'lg' | 'xl';
+};
+
+const meta: Meta<TabsDemoArgs> = {
 	title: 'Primitives/Tabs',
+	argTypes: {
+		size: { control: 'select', options: ['sm', 'default', 'lg', 'xl'] },
+	},
+	args: {
+		size: 'default',
+	},
 };
 
 export default meta;
 
-type Story = StoryObj;
+type Story = StoryObj<TabsDemoArgs>;
 
 export const Default: Story = {
-	render: () => (
+	render: ({ size }) => (
 		<Tabs defaultValue="overview" style={{ width: 460 }}>
-			<TabsList>
+			<TabsList size={size}>
 				<TabsTrigger value="overview">Overview</TabsTrigger>
 				<TabsTrigger value="activity">Activity</TabsTrigger>
 				<TabsTrigger value="settings">Settings</TabsTrigger>
@@ -33,6 +44,8 @@ export const Default: Story = {
 // TabsList takes Button's sizes, so a tab group and its neighbouring actions
 // share one height in a toolbar.
 export const Sizes: Story = {
+	// Every size is on screen at once, so a size control has nothing to drive.
+	parameters: { controls: { exclude: ['size'] } },
 	render: () => (
 		<div style={{ display: 'grid', gap: 12 }}>
 			{(['sm', 'default', 'lg', 'xl'] as const).map((size) => (

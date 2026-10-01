@@ -192,3 +192,113 @@ export const Grouped: Story = {
 		</div>
 	),
 };
+
+const countries = [
+	{ value: 'gb', label: 'United Kingdom', flag: '🇬🇧', currency: 'GBP' },
+	{ value: 'fr', label: 'France', flag: '🇫🇷', currency: 'EUR' },
+	{ value: 'se', label: 'Sweden', flag: '🇸🇪', currency: 'SEK' },
+	{ value: 'jp', label: 'Japan', flag: '🇯🇵', currency: 'JPY' },
+	{ value: 'us', label: 'United States', flag: '🇺🇸', currency: 'USD' },
+];
+
+// `icon` leads each option and `detail` is pinned to the right. Only the label
+// is item text, so typing "fr" finds France and the trigger never shows "EUR".
+// The trigger repeats the flag through SelectValue's render function.
+export const WithIconsAndDetail: Story = {
+	parameters: {
+		controls: {
+			exclude: [
+				'alignItemWithTrigger',
+				'side',
+				'align',
+				'sideOffset',
+				'collisionPadding',
+				'items',
+				'defaultValue',
+				'placeholder',
+				'label',
+			],
+		},
+	},
+	render: (args) => (
+		<div style={{ width: 280 }}>
+			<Select
+				size={args.size}
+				items={countries.map(({ value, label }) => ({ value, label }))}
+				defaultValue="gb"
+			>
+				<SelectTrigger aria-label="Country">
+					<SelectValue placeholder="Select a country">
+						{(value: string) => {
+							const country = countries.find((c) => c.value === value);
+							return (
+								<span className="flex items-center gap-2">
+									<span aria-hidden="true">{country?.flag}</span>
+									{country?.label}
+								</span>
+							);
+						}}
+					</SelectValue>
+				</SelectTrigger>
+				<SelectContent>
+					{countries.map((country) => (
+						<SelectItem
+							key={country.value}
+							value={country.value}
+							icon={country.flag}
+							detail={country.currency}
+						>
+							{country.label}
+						</SelectItem>
+					))}
+				</SelectContent>
+			</Select>
+		</div>
+	),
+};
+
+// Any node works as an icon — here Tabler glyphs, with no detail.
+export const WithIcons: Story = {
+	parameters: {
+		controls: {
+			exclude: [
+				'alignItemWithTrigger',
+				'side',
+				'align',
+				'sideOffset',
+				'collisionPadding',
+				'items',
+				'defaultValue',
+				'placeholder',
+				'label',
+			],
+		},
+	},
+	render: (args) => (
+		<div style={{ width: 280 }}>
+			<Select
+				size={args.size}
+				items={{ list: 'List', board: 'Board', calendar: 'Calendar' }}
+				defaultValue="board"
+			>
+				<SelectTrigger aria-label="View">
+					<SelectValue placeholder="Select a view" />
+				</SelectTrigger>
+				<SelectContent>
+					<SelectItem value="list" icon={<i className="ti ti-list" />}>
+						List
+					</SelectItem>
+					<SelectItem
+						value="board"
+						icon={<i className="ti ti-layout-kanban" />}
+					>
+						Board
+					</SelectItem>
+					<SelectItem value="calendar" icon={<i className="ti ti-calendar" />}>
+						Calendar
+					</SelectItem>
+				</SelectContent>
+			</Select>
+		</div>
+	),
+};

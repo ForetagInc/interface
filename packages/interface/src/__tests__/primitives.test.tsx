@@ -112,6 +112,34 @@ describe('Interface UI primitives', () => {
 		expect(screen.getByRole('combobox')).toHaveTextContent('Choose theme');
 	});
 
+	test('select items keep icon and detail out of the selected label', async () => {
+		const user = userEvent.setup();
+		render(
+			<Select items={{ fr: 'France', jp: 'Japan' }} defaultValue="fr">
+				<SelectTrigger aria-label="Country">
+					<SelectValue />
+				</SelectTrigger>
+				<SelectContent>
+					<SelectItem value="fr" icon="🇫🇷" detail="EUR">
+						France
+					</SelectItem>
+					<SelectItem value="jp" icon="🇯🇵" detail="JPY">
+						Japan
+					</SelectItem>
+				</SelectContent>
+			</Select>,
+		);
+
+		await user.click(screen.getByRole('combobox', { name: 'Country' }));
+		const japan = await screen.findByRole('option', { name: /Japan/ });
+		expect(japan).toHaveTextContent('JPY');
+		await user.click(japan);
+
+		await waitFor(() => {
+			expect(screen.getByRole('combobox')).toHaveTextContent(/^Japan$/);
+		});
+	});
+
 	test('renders dialog structure', () => {
 		render(
 			<Dialog open>
