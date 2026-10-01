@@ -1,4 +1,4 @@
-import { Avatar as AvatarPrimitive } from '@base-ui-components/react/avatar';
+import { Avatar as AvatarPrimitive } from '@base-ui/react/avatar';
 import { tv, type VariantProps } from 'tailwind-variants';
 import type * as React from 'react';
 

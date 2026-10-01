@@ -1,4 +1,4 @@
-import { Select as SelectPrimitive } from '@base-ui-components/react/select';
+import { Select as SelectPrimitive } from '@base-ui/react/select';
 import * as React from 'react';
 import { tv } from 'tailwind-variants';
 import { cn } from '../utils';
@@ -37,51 +37,41 @@ type SelectProps = React.ComponentProps<typeof SelectPrimitive.Root> & {
 	size?: SelectSize;
 };
 
-type SelectItems = SelectProps['items'];
-
-const SelectItemsContext = React.createContext<SelectItems>(undefined);
-
 const Select = ({ size = 'base', children, ...props }: SelectProps) => (
 	<SelectSizeContext.Provider value={size}>
-		<SelectItemsContext.Provider value={props.items}>
-			<SelectPrimitive.Root {...props}>{children}</SelectPrimitive.Root>
-		</SelectItemsContext.Provider>
+		<SelectPrimitive.Root {...props}>{children}</SelectPrimitive.Root>
 	</SelectSizeContext.Provider>
 );
 
-/** Mirrors Base UI's own value→label lookup so the trigger shows the item's text. */
-function labelFor(items: SelectItems, value: unknown): React.ReactNode {
-	if (!items) return value as React.ReactNode;
-	if (Array.isArray(items)) {
-		return (
-			items.find((item) => item.value === value)?.label ??
-			(value as React.ReactNode)
-		);
-	}
+const SelectGroup = SelectPrimitive.Group;
+
+type SelectValueProps = React.ComponentProps<typeof SelectPrimitive.Value>;
+
+/** Matches what Base UI treats as "nothing selected" for the placeholder. */
+function isEmptyValue(value: unknown) {
 	return (
-		(items as Record<string, React.ReactNode>)[value as string] ??
-		(value as React.ReactNode)
+		value === null ||
+		value === undefined ||
+		value === '' ||
+		(Array.isArray(value) && value.length === 0)
 	);
 }
 
-const SelectGroup = SelectPrimitive.Group;
-
-type SelectValueProps = React.ComponentProps<typeof SelectPrimitive.Value> & {
-	/** Shown while nothing is selected; Base UI has no placeholder prop of its own. */
-	placeholder?: React.ReactNode;
-};
-
 function SelectValue({ placeholder, children, ...props }: SelectValueProps) {
-	const items = React.useContext(SelectItemsContext);
+	// Without children, Base UI resolves the label from the root's `items`
+	// (records, arrays, groups and `itemToStringLabel`) and shows `placeholder`
+	// while nothing is selected.
+	if (children == null) {
+		return <SelectPrimitive.Value placeholder={placeholder} {...props} />;
+	}
 
+	// Base UI lets children override the placeholder; keep it winning while the
+	// select is empty so custom formatting never has to handle that case.
 	return (
-		<SelectPrimitive.Value {...props}>
+		<SelectPrimitive.Value placeholder={placeholder} {...props}>
 			{(value) => {
-				if (value === null || value === undefined || value === '') {
-					return placeholder;
-				}
-				if (typeof children === 'function') return children(value);
-				return children ?? labelFor(items, value);
+				if (isEmptyValue(value)) return placeholder;
+				return typeof children === 'function' ? children(value) : children;
 			}}
 		</SelectPrimitive.Value>
 	);

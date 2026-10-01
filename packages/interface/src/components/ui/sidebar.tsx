@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/suspicious/noDocumentCookie: Placeholders */
 
-import { useRender } from '@base-ui-components/react/use-render';
+import { useRender } from '@base-ui/react/use-render';
 import * as React from 'react';
 import { tv, type VariantProps } from 'tailwind-variants';
 import { useIsMobile } from '../../hooks/use-mobile';

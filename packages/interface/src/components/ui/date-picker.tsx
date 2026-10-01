@@ -3,7 +3,12 @@ import * as React from 'react';
 import { cn } from '../utils';
 import { Calendar } from './calendar';
 import { Input } from './input';
-import { Popover, PopoverContent, PopoverTrigger } from './popover';
+import {
+	Popover,
+	PopoverAnchor,
+	PopoverContent,
+	PopoverTrigger,
+} from './popover';
 
 type Props = {
 	date?: Date;
@@ -23,8 +28,6 @@ export function DatePicker({
 	min,
 }: Props) {
 	const [open, setOpen] = React.useState(false);
-	// The popover anchors to the whole field, while only the icon button triggers it.
-	const anchorRef = React.useRef<HTMLDivElement>(null);
 	const dayRef = React.useRef<HTMLInputElement>(null);
 	const monthRef = React.useRef<HTMLInputElement>(null);
 	const yearRef = React.useRef<HTMLInputElement>(null);
@@ -110,8 +113,8 @@ export function DatePicker({
 
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
-			<div
-				ref={anchorRef}
+			{/* The popover anchors to the whole field, while only the icon button triggers it. */}
+			<PopoverAnchor
 				className={cn(
 					'relative flex h-9 w-full items-center gap-1.5 rounded-md bg-(--input-bg) px-2.5 text-(--input-fg) shadow-(--input-shadow) transition-[color,background-color,border-color,box-shadow] focus-within:shadow-(--input-shadow-focus) hover:bg-(--input-bg-hover)',
 					hasError && 'shadow-(--input-shadow-error)',
@@ -220,9 +223,8 @@ export function DatePicker({
 				>
 					<i aria-hidden="true" className="ti ti-calendar-event text-base" />
 				</PopoverTrigger>
-			</div>
+			</PopoverAnchor>
 			<PopoverContent
-				anchor={anchorRef}
 				className="w-auto border-0 bg-transparent p-2 shadow-none"
 				align="center"
 			>
@@ -246,7 +248,8 @@ export function DatePicker({
 						setHasError(false);
 						setOpen(false);
 					}}
-					initialFocus
+					// react-day-picker 10 dropped `initialFocus`; `autoFocus` is its replacement.
+					autoFocus
 				/>
 			</PopoverContent>
 		</Popover>

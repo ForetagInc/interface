@@ -1,10 +1,50 @@
-import { Popover as PopoverPrimitive } from '@base-ui-components/react/popover';
-import type * as React from 'react';
+import { Popover as PopoverPrimitive } from '@base-ui/react/popover';
+import { useRender } from '@base-ui/react/use-render';
+import * as React from 'react';
 
 import { cn } from '../utils';
 
-const Popover = PopoverPrimitive.Root;
+/**
+ * Carries the element registered by `PopoverAnchor` to `PopoverContent`. It is
+ * state rather than a ref so the positioner re-renders once the anchor mounts.
+ */
+const PopoverAnchorContext = React.createContext<{
+	anchor: HTMLElement | null;
+	setAnchor: (element: HTMLElement | null) => void;
+} | null>(null);
+
+function Popover<Payload = unknown>(
+	props: PopoverPrimitive.Root.Props<Payload>,
+) {
+	const [anchor, setAnchor] = React.useState<HTMLElement | null>(null);
+	const context = React.useMemo(() => ({ anchor, setAnchor }), [anchor]);
+
+	return (
+		<PopoverAnchorContext.Provider value={context}>
+			<PopoverPrimitive.Root {...props} />
+		</PopoverAnchorContext.Provider>
+	);
+}
+
 const PopoverTrigger = PopoverPrimitive.Trigger;
+
+type PopoverAnchorProps = useRender.ComponentProps<'div'>;
+
+/**
+ * Positions the popover against an element other than its trigger — e.g. a
+ * whole input field whose icon button is the trigger. Renders a `<div>`; use
+ * `render` to make an existing element the anchor instead.
+ */
+function PopoverAnchor({ render, ref, ...props }: PopoverAnchorProps) {
+	const context = React.useContext(PopoverAnchorContext);
+
+	return useRender({
+		render,
+		ref: [ref ?? null, context?.setAnchor ?? null],
+		defaultTagName: 'div',
+		props,
+	});
+}
 
 type PopoverContentProps = React.ComponentProps<typeof PopoverPrimitive.Popup> &
 	Pick<
@@ -20,13 +60,17 @@ function PopoverContent({
 	anchor,
 	...props
 }: PopoverContentProps) {
+	const anchorContext = React.useContext(PopoverAnchorContext);
+
 	return (
 		<PopoverPrimitive.Portal>
 			<PopoverPrimitive.Positioner
 				align={align}
 				side={side}
 				sideOffset={sideOffset}
-				anchor={anchor}
+				// An explicit `anchor` wins, then a `PopoverAnchor`, then Base UI's
+				// default of the trigger.
+				anchor={anchor ?? anchorContext?.anchor ?? undefined}
 				className="z-50"
 			>
 				<PopoverPrimitive.Popup
@@ -41,4 +85,4 @@ function PopoverContent({
 	);
 }
 
-export { Popover, PopoverTrigger, PopoverContent };
+export { Popover, PopoverTrigger, PopoverAnchor, PopoverContent };

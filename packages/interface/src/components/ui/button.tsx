@@ -1,4 +1,4 @@
-import { useRender } from '@base-ui-components/react/use-render';
+import { useRender } from '@base-ui/react/use-render';
 import { tv, type VariantProps } from 'tailwind-variants';
 import * as React from 'react';
 import { cn } from '../utils';
