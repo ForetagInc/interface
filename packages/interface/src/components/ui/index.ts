@@ -25,6 +25,7 @@ export * from './input-number';
 export * from './kbd';
 export * from './label';
 export * from './native-select';
+export * from './otp-input';
 export * from './popover';
 export * from './progress';
 export * from './radio-group';

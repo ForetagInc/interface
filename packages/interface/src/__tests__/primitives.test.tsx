@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test } from 'vitest';
+import { afterEach, describe, expect, test, vi } from 'vitest';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as React from 'react';
@@ -9,6 +9,7 @@ import {
 	DialogDescription,
 	DialogTitle,
 	Input,
+	OtpInput,
 	Popover,
 	PopoverAnchor,
 	PopoverContent,
@@ -364,6 +365,49 @@ describe('Interface UI primitives', () => {
 				);
 			});
 			explicit.remove();
+		});
+	});
+	describe('OtpInput', () => {
+		test('renders one slot per character, grouped by `groupSize`', () => {
+			const { container } = render(<OtpInput length={6} groupSize={3} />);
+			expect(screen.getAllByRole('textbox')).toHaveLength(6);
+			expect(
+				container.querySelectorAll('[data-slot="otp-input-separator"]'),
+			).toHaveLength(1);
+		});
+
+		test('a group size covering the whole code renders no separator', () => {
+			const { container } = render(<OtpInput length={4} groupSize={4} />);
+			expect(screen.getAllByRole('textbox')).toHaveLength(4);
+			expect(
+				container.querySelectorAll('[data-slot="otp-input-separator"]'),
+			).toHaveLength(0);
+		});
+
+		test('reports changes and completion', async () => {
+			const user = userEvent.setup();
+			const onValueChange = vi.fn();
+			const onValueComplete = vi.fn();
+			render(
+				<OtpInput
+					length={4}
+					onValueChange={onValueChange}
+					onValueComplete={onValueComplete}
+				/>,
+			);
+
+			await user.click(screen.getAllByRole('textbox')[0] as HTMLElement);
+			await user.keyboard('1234');
+
+			expect(onValueChange).toHaveBeenLastCalledWith('1234', expect.anything());
+			expect(onValueComplete).toHaveBeenCalledWith('1234', expect.anything());
+		});
+
+		test('forwards `aria-invalid` to every slot', () => {
+			render(<OtpInput length={4} aria-invalid />);
+			for (const slot of screen.getAllByRole('textbox')) {
+				expect(slot).toHaveAttribute('aria-invalid', 'true');
+			}
 		});
 	});
 });

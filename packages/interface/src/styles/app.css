@@ -192,6 +192,9 @@
 	--calendar-caption-height-compact: 2rem;
 	--calendar-padding-compact: 0rem;
 	--calendar-chevron-size-compact: 0.875rem;
+	--otp-slot-size: 2.25rem;
+	--otp-slot-size-small: 2rem;
+	--otp-gap: 0.5rem;
 	--input-bg: color-mix(
 		in oklab,
 		hsl(var(--theme-background)),
